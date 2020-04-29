@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
+
 @Component({
   selector: "app-sign-up-login",
   templateUrl: "./sign-up-login.component.html",
@@ -10,6 +11,7 @@ export class SignUpLoginComponent implements OnInit {
   username: string;
   password: string;
   user: any;
+  token;
 
   ngOnInit() {}
 
@@ -21,14 +23,12 @@ export class SignUpLoginComponent implements OnInit {
   }
   async signUp() {
     await this.authService.signup(this.username, this.password);
-    // await this.authService.login(user);
-    console.log(this.username);
-    console.log(this.password);
   }
 
   async logIn() {
     await this.authService.login(this.username, this.password);
-    console.log(this.username);
-    console.log(this.password);
+    if (this.token != " ") {
+      this.router.navigate(["/main"]);
+    }
   }
 }
