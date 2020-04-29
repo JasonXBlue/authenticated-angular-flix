@@ -19,12 +19,16 @@ export class SignUpLoginComponent implements OnInit {
       password: this.password,
     };
   }
-  async signUp(user) {
-    await this.authService.signup(user);
-    await this.authService.login(user);
+  async signUp() {
+    await this.authService.signup(this.username, this.password);
+    // await this.authService.login(user);
+    console.log(this.username);
+    console.log(this.password);
   }
 
-  async logIn(user) {
-    await this.authService.login(user);
+  async logIn() {
+    await this.authService.login(this.username, this.password);
+    console.log(this.username);
+    console.log(this.password);
   }
 }

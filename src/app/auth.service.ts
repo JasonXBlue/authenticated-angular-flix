@@ -17,8 +17,8 @@ export class AuthService {
   //   return await response;
   // }
 
-  async signup(user) {
-    let response = await this.apiService.post("auth/signup", user);
+  async signup(username: string, password: string) {
+    let response = this.apiService.post("auth/signup", { username, password });
     return await response;
   }
 
@@ -31,11 +31,16 @@ export class AuthService {
   //   this.token = response.token;
   // }
 
-  async login(user) {
-    this.apiService.post("auth/signup", user);
+  async login(username: string, password: string) {
+    this.apiService.post("auth/signup", { username, password });
 
-    const response = await this.apiService.post("auth/login", user);
+    const response = await this.apiService.post("auth/login", {
+      username,
+      password,
+    });
+
     this.token = response.token;
+    console.log(response);
   }
   get getToken() {
     return this.token;
