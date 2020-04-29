@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { MovieApiService } from './movie-api.service';
-import { ApiService } from './api.service';
+import { Injectable } from "@angular/core";
+import { MovieApiService } from "./movie-api.service";
+import { ApiService } from "./api.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MovieService {
-  searchResults= []
-  myMovieList =[]
-  constructor(private movieApi : MovieApiService, private api : ApiService) { }
-   
+  searchResults = [];
+  myMovieList = [];
+  constructor(private movieApi: MovieApiService, private api: ApiService) {}
+
   getSearchResults() {
     return this.searchResults;
   }
@@ -27,7 +27,7 @@ export class MovieService {
     this.myMovieList.push(...results);
   }
   async saveToList(movie) {
-    await this.api.post(`movies`,movie);
+    await this.api.post(`movies`, movie);
     this.loadMovieList();
   }
 }

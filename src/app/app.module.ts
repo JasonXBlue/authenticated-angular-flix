@@ -17,6 +17,15 @@ import { MovieApiService } from "./movie-api.service";
 import { ApiService } from "./api.service";
 import { SignUpLoginComponent } from "./sign-up-login/sign-up-login.component";
 import { FormsModule } from "@angular/forms";
+/* "Barrel" of Http Interceptors */
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+
+import { AuthInterceptor } from "./auth-interceptor";
+
+/** Http interceptor providers in outside-in order */
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+];
 
 @NgModule({
   declarations: [
@@ -32,7 +41,12 @@ import { FormsModule } from "@angular/forms";
     SignUpLoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [MovieService, MovieApiService, ApiService],
+  providers: [
+    MovieService,
+    MovieApiService,
+    ApiService,
+    httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
