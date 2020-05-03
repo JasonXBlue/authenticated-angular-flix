@@ -1,8 +1,10 @@
 <input type="text" placeholder="username" [(ngModel)]="username" />
 <input type="text" placeholder="password" [(ngModel)]="password" />
 <button (click)="signUp()">Sign Up</button>
-<!-- <button (click)="logIn()">Login</button> -->
-
-<a routerLink="/main-component" (click)="logIn()" routerLinkActive="active"
-  >Log In</a
+<button
+  routerLink="/main-component"
+  (click)="logIn()"
+  routerLinkActive="active"
 >
+  Log In
+</button>
