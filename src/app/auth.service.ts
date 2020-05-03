@@ -6,6 +6,7 @@ import { ApiService } from "./api.service";
 })
 export class AuthService {
   token: string;
+  loggedIn: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -23,6 +24,11 @@ export class AuthService {
     });
 
     this.token = response.token;
+    alert(response.message);
+
+    if (response.message !== "Username or password invalid") {
+      this.loggedIn = true;
+    }
   }
   getToken() {
     return this.token;
