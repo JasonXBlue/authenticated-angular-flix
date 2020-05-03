@@ -13,7 +13,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     // Get the auth token from the service.
-    let authToken = this.authService.getToken;
+
+    let authToken = this.authService.getToken();
     if (!authToken) {
       authToken = " ";
     }
@@ -24,10 +25,14 @@ export class AuthInterceptor implements HttpInterceptor {
     // const authReq = request.clone({
     //   headers: request.headers.set("Authorization", "bearer " + authToken),
     // });
+    // const clone = request.clone({
+    //   setHeaders: {
+    //     Authorization: "Bearer ${this.authService.getToken}",
+    //   },
+    // });
+
     const clone = request.clone({
-      setHeaders: {
-        Authorization: "Bearer ${this.authService.getToken}",
-      },
+      headers: request.headers.set("Authorization", "Bearer " + authToken),
     });
 
     // send cloned request with header to the next handler.

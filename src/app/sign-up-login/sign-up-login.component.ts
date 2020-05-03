@@ -23,6 +23,10 @@ export class SignUpLoginComponent implements OnInit {
   }
   async signUp() {
     await this.authService.signup(this.username, this.password);
+    await this.authService.login(this.username, this.password);
+    // if (this.token != " ") {
+    this.router.navigate(["/main"]);
+    // }
   }
 
   async logIn() {

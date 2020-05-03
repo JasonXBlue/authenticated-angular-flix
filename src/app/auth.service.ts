@@ -24,7 +24,7 @@ export class AuthService {
 
     this.token = response.token;
   }
-  get getToken() {
+  getToken() {
     return this.token;
   }
 }
